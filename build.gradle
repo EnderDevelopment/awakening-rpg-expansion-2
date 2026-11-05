@@ -1,0 +1,65 @@
+plugins {
+    id 'java'
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.neoforged.gradle.userdev' version '7.0.80'
+}
+
+version = mod_version
+group = maven_group
+
+base {
+    archivesName = archives_base_name
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+// NeoForge userdev setup. Apply the runs from a single common block is not
+// needed for a source-only release, but the default dependency is still set.
+dependencies {
+    implementation "net.neoforged:neoforge:${neo_version}"
+}
+
+// This block is used by the NeoForge Gradle plugin to set up the mod source sets.
+neoForge {
+    runs {
+        client {
+            client()
+        }
+        server {
+            server()
+        }
+    }
+}
+
+processResources {
+    filesMatching('META-INF/neoforge.mods.toml') {
+        expand 'version': mod_version
+    }
+}
+
+jar {
+    manifest {
+        attributes([
+            'Specification-Title'     : 'Awakening RPG Companion',
+            'Specification-Vendor'    : 'EnderDevelopment',
+            'Specification-Version'   : '1',
+            'Implementation-Title'    : project.name,
+            'Implementation-Version'  : project.jar.archiveVersion,
+            'Implementation-Vendor'   : 'EnderDevelopment'
+        ])
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = 'UTF-8'
+}

@@ -1,0 +1,14 @@
+{
+  "itemGroup.awakening_rpg": "Awakening RPG",
+  "item.awakening_rpg.aetherial_sword": "Aetherial Sword",
+  "item.awakening_rpg.wayfinder_compass": "Wayfinder Compass",
+  "item.awakening_rpg.quest_tome": "Quest Tome",
+
+  "screen.awakening_rpg.quest_title": "Adventure Journal",
+  "gui.awakening_rpg.close": "Close Journal",
+  "gui.awakening_rpg.hint": "The Awakening rules the combat. This journal guides your journey.",
+
+  "message.awakening_rpg.travelled": "The Wayfinder carries you to the Awakening Lands...",
+  "message.awakening_rpg.returned": "You return to the Overworld.",
+  "message.awakening_rpg.dimension_missing": "The Awakening Lands could not be reached."
+}
